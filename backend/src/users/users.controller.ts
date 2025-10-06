@@ -39,12 +39,6 @@ export class UsersController {
     return await this.usersService.findMany(query);
   }
 
-  @Get(':username')
-  @UseInterceptors(SensitiveDataInterceptor)
-  async getByUsername(@Param('username') username: string): Promise<User> {
-    return await this.usersService.findByUsername(username);
-  }
-
   @Get('me')
   @UseInterceptors(SensitiveDataInterceptor)
   async getCurrentUser(@Req() req: RequestWithUser) {
@@ -55,6 +49,12 @@ export class UsersController {
   @UseInterceptors(SensitiveDataInterceptor)
   async getProfileWishes(@Req() req: RequestWithUser) {
     return await this.usersService.findWishes({ id: req.user.id });
+  }
+
+  @Get(':username')
+  @UseInterceptors(SensitiveDataInterceptor)
+  async getByUsername(@Param('username') username: string): Promise<User> {
+    return await this.usersService.findByUsername(username);
   }
 
   @Get(':username/wishes')
