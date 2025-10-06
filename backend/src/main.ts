@@ -12,7 +12,22 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,
     methods: 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
-    origin: `http://localhost:${PORT}`,
+    origin: (
+      origin: string | undefined,
+      callback: (err: Error | null, allow?: boolean) => void,
+    ) => {
+      const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [
+        'http://localhost:8081',
+      ];
+
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('Not allowed by CORS'), false);
+    },
   });
   await app.listen(PORT);
 }
