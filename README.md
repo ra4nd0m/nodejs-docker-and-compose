@@ -1,3 +1,7 @@
 # Докеризация приложения
 
-Перед тем как приступить к выполнению проектной работы разместите в репозитории исходный код фронтенд и бэкенд частей сервиса КупиПодариДай, реализованного вами ранее. 
+IP address:158.160.191.50
+
+Frontend: <https://magistrproj.nomorepartiessbs.ru>
+
+Backend: <https://api.magistrproj.nomorepartiessbs.ru>
